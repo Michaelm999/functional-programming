@@ -4,7 +4,8 @@ const List = (props) => {
   return (
     <ul>
     {props.items.map((item, blade) => {
-      return<li key={blade}>{item}</li>
+      return<li onClick={() => {props.onItemClick(item)}}
+      key={blade}>{item}</li>
     })}
     </ul>
   )

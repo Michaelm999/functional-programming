@@ -12,7 +12,10 @@ import PropTypes from 'prop-types'
 
 const Button = (props) => {
   return (
-    <button  className="button button-outline" onClick={props.onButtonClick}>{props.text}</button>
+    <button  className="button button-outline"
+      onClick={props.onButtonClick}>
+      {props.text}
+    </button>
   )
 }
 
