@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+
+      var kitchen = {
+        lightsOn: true,
+        sink: [
+          {type: 'plate', clean: false},
+          {type: 'cup', clean: false},
+          {type: 'fork', clean: false}
+        ],
+        dishWasher: []
+      }
+
+      function toggleLights(stateObj) {
+        var newStateObj = Object.assign({}, stateObj, {
+          lightsOn: !stateObj.lightsOn
+        })
+
+        return newStateObj
+      }
+
+      function fillDishWasher(stateObj) {
+        var newStateObj = Object.assign({}, stateObj, {
+          sink: [],
+          dishWasher: [...stateObj.sink, ...stateObj.dishWasher]
+        })
+        return newStateObj
+      }
+
+      function runDishWasher(stateObj) {
+        var newStateObj = Object.assign({}, stateObj, {
+          dishWasher: stateObj.dishWasher.map(function(dish) {
+            return Object.assign({}, dish, {clean: true})
+          })
+        })
+        return newStateObj
+      }
+
+//////////////////////////////
+      //create a bedroom state obj that has:
+      var bedroom = {
+        lightsOn: true,
+        floor: [
+          {type: 'shirt', folded: false},
+          {type: 'pants', folded: false},
+          {type: 'boxers', folded: true}
+        ],
+        dresser: [{type: 'sweatshirt', folded: true}]
+      }
+
+      function foldClothes(stateObj) {
+        var newStateObj = Object.assign({}, stateObj, {
+          floor: stateObj.floor.map(function(garment) {
+            return Object.assign({}, garment, {folded: true})
+          })
+        })
+        return newStateObj
+      }
+      function putAwayClothes(stateObj) {
+        var newStateObj = Object.assign({}, stateObj, {
+          floor: [],
+          dresser: [...stateObj.dresser, ...stateObj.floor]
+        })
+        return newStateObj
+      }
+      console.log(bedroom);
+      bedroom = foldClothes(bedroom)
+      console.log(bedroom)
+      bedroom = putAwayClothes(bedroom)
+      console.log(bedroom)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Class for JS Classes</title>
+  </head>
+  <body>
+      <script type="text/javascript">
+        class Dog {
+          constructor(props) {
+            this.breed = props.breed
+            this.color = props.color
+            console.log('this so far is');
+            console.log(this);
+            this.weight = props.weight
+          }
+          bark(){
+            if (this.weight > 30) {
+              console.log('WOOF WOOF')
+              console.log('WOOF WOOF')
+            } else if (this.breed = 'chihuahua'){
+            for (var i = 0; i < 10; i++) {
+              document.write('woife!')
+            }
+          } else {
+            console.log('woife!')
+             }
+          }
+          saySize() {
+            if (this.weight >=100) {
+              console.log("I'm a big dog");
+            } else if (this.weight >= 50) {
+              console.log("i'm a medium dog");
+            }else{
+              console.log("I'm a small dog");
+            }
+          }
+        }
+
+        var pebbles = new Dog({breed: 'chihuahua',
+					color: 'yellow',
+					weight: 5})
+
+        var Fred = new Dog({breed: 'Great Dane',
+					color: 'brown',
+					weight: 80})
+
+        var Ladybird = new Dog({breed: 'Bloodhound',
+          color: 'brown',
+          weight: 50})
+
+      class RapperDog extends Dog {
+        rap() {
+          console.log("I'm the big ${this.color} dogg I'm not a cog in the machine")
+        }
+      }
+
+      var Snoop = new RapperDog({breed: 'West Coast Rapper',
+        color: 'black',
+        wieght: 145})
+      </script>
+  </body>
+</html>

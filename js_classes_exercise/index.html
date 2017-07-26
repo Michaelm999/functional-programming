@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      class User {
+        constructor(props) {
+          this.name = props.name,
+          this.age = props.age,
+          this.password = props.password,
+          this.authenticate = props.authenticate
+        }
+      }
+    class BasicMember extends User {
+      constructor(props) {
+        super(props)
+        this.canWatchPremium = false,
+        this.canWatchBasic = true,
+        this.monthlyRate = 50
+      }
+      phrase(){
+        document.write("I'm Basic")
+      }
+    }
+
+    class PremiumMember extends User {
+      constructor(props) {
+        super(props)
+        this.canWatchPremium = true,
+        this.canWatchBasic = true,
+        this.monthlyRate = 100
+      }
+      phrase(){
+        document.write("I'm Premium")
+      }
+    }
+///////////////////////
+    var Bernie = new BasicMember({
+    name: "Bernie",
+    age: 70,
+    password: "feelthebern",
+    authenticate: true
+  })
+
+    var Hilary = new PremiumMember ({
+      name: "Hilary",
+      age: 63,
+      password: "ImwithHer",
+      authenticate: false
+    })
+
+    var Donald = new PremiumMember ({
+      name: "Donald",
+      age: 72,
+      password: "WRONG!",
+      authenticate: false
+    })
+
+    var Ted = new BasicMember({
+    name: "Ted",
+    age: 45,
+    password: "mydadkilledJFK",
+    authenticate: false
+  })
+
+  var Rand = new BasicMember({
+  name: "Rand",
+  age: 33,
+  password: "consistent",
+  authenticate: true
+})
+
+var Christie = new PremiumMember ({
+  name: "Chris",
+  age: 63,
+  password: "Bridge",
+  authenticate: false
+})
+
+var Marco = new User ({
+  name: "Marco",
+  age: 30,
+  password: "Cuba",
+  authenticate: false
+})
+
+var Jeb = new User ({
+  name: "Jeb!",
+  age: 50,
+  password: "JEB!",
+  authenticate: true
+})
+    </script>
+  </body>
+</html>
