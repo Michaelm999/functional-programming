@@ -1,12 +1,26 @@
 import React from 'react'
 
-const Table = (row) => {
+const Table = (props) => {
   return (
-    <table>
-      <td key={row.name}>{row.name}</td>
-      <td key={row.id}>{row.id}</td>
-      <td key={row.price}>{row.price}</td>
-    </table>
+
+      <table>
+        <thead>
+          <tr>
+            {props.headings.map((heading, index) =>
+            (<th key={index}>{heading}</th>
+          ))}
+          </tr>
+        </thead>
+        <tbody>
+            {props.tableData.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((cell, cellIndex) => (
+                <td key={cellIndex}>{cell}</td>
+                ))}
+              </tr>
+              ))}
+        </tbody>
+      </table>
   )
 }
 

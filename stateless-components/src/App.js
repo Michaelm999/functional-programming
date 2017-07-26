@@ -7,23 +7,22 @@ import Input from './components/Input'
 import List from './components/List'
 import Table from './components/Table'
 import Form from './components/Form'
+import Dropdown from './components/Dropdown'
 
 const quote = "I don't have a good quote yet"
 const listItems = ["Saber", "Archer", "Lancer"]
 
-const products = [{
-  name: "onion",
-  price: ".99",
-  id: 1
-}, {
-  name: "pepper",
-  price: "1.25",
-  id: 2
-}, {
-  name: "broccoli",
-  price: "3.00",
-  id: 3
-}];
+const headings = ["name", "email", "Favorite Drink" ]
+const tableData = [
+  ["Michael", "michael_mazzarella@hotmail.com", "mai tai"],
+  ["Vivian", "vivhuan@gmail.com", "Vodka"],
+  ["Joan", "joan.sumpter@earthlink.net", "chardonnay"]
+]
+const options = [
+  {value:'123', text:'viv'},
+  {value:'456', text:'kyle'},
+  {value:'789', text:'Matt'}
+]
 
 
 class App extends Component {
@@ -43,7 +42,8 @@ class App extends Component {
               <Blockquotes text={quote} />
               <Input placeholder="New Todo..." />
               <List items={listItems} />
-              <Table items={products} />
+              <Table headings={headings} tableData={tableData} />
+              <Dropdown options={options}/>
             </div>
           </div>
         </div>
