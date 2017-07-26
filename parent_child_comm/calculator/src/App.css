@@ -1,0 +1,24 @@
+.buttons {
+  height: 125px;
+  padding-top: 75px;
+}
+.buttons button{
+  color: red;
+  width: 40px;
+  height: 25px;
+  font-size: 15px;
+}
+.calculator{
+  background-color: cyan;
+}
+
+body {
+  background-color: yellow;
+}
+.display{
+  text-align: center;
+  width: 300px;
+  height: 100px;
+  align: center;
+  background-color: white;
+}

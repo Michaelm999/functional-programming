@@ -49,7 +49,7 @@ class App extends Component {
           <List items={this.state.returnable}
             onItemClick={this.returnCat.bind(this)} />
       </div>
-    );
+    )
   }
 }
 

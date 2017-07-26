@@ -43,7 +43,7 @@ class App extends Component {
               <Input placeholder="New Todo..." />
               <List items={listItems} />
               <Table headings={headings} tableData={tableData} />
-              <Dropdown options={options}/>
+              <Dropdown options={options} />
             </div>
           </div>
         </div>
