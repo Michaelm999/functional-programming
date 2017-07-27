@@ -38,10 +38,10 @@ function keyPressed() {
     guy.vx=-1
   }
   if (keyCode===UP_ARROW) {
-    guy.vy=1
+    guy.vy=-1
   }
   if (keyCode===DOWN_ARROW) {
-    guy.vy=-1
+    guy.vy=1
   }
 }
 function keyReleased() {
