@@ -4,26 +4,27 @@ import './App.css';
 class App extends Component {
 constructor(){
   super()
-  this.state = {display: ''}
+  this.state = {screen: ''}
 }
 
-updateCalcDisplay(num){
+updateDisplay(num){
   if (num === 'start') {
-    this.setState({display: 'GameBoy'})
+    this.setState({screen: 'GameBoy'})
   } else if(num === 'select') {
-    this.setState({display: 'Somehting Cool!'})
+    this.setState({screen: 'Something Cool!'})
   } else {
-    this.setState({display: num})
+    this.setState({screen: num})
   }
 }
-///////////
+
+
 render() {
   return (
     <div className="GameBoy">
-      <div className="display">{this.state.display}</div>
-      <div className="buttons">
+      <div className="screen">{this.state.screen}</div>
+      <div className="buttonpad">
         {
-          ['start', 'A', 'B', 'left', 'right', 'select']
+          ['start', 'select', 'A', 'B', 'left', 'right', 'up', 'down']
           .map(game => <Button key={game} title={game} dad={this} />)
           }
       </div>
@@ -34,7 +35,7 @@ render() {
 
 class Button extends Component {
 handleClick(){
-  this.props.dad.updateCalcDisplay(this.props.title)
+  this.props.dad.updateDisplay(this.props.title)
 }
 render(){
   return <button onClick={this.handleClick.bind(this)}
