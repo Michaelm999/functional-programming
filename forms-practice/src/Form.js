@@ -2,8 +2,9 @@ import React from 'react';
 
 class Form extends React.Component {
 
-  handleFormSubmit(evt){
-    evt.preventDefault()
+  handleFormSubmit(this){
+    this.preventDefault()
+
     const formData={
       email: this.refs.email.value,
       password: this.refs.password.value
