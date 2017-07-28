@@ -20,6 +20,11 @@ class App extends Component {
       })
   }
 
+  displayMon(){
+    console.log("pokedex")
+    
+  }
+
   componentDidMount(){
     this.catchPokemon()
   }
@@ -46,9 +51,9 @@ class App extends Component {
       <div className="App">
         <h1>{this.state.loading ? 'Loading...' : ''}</h1>
         <div className="App-header">
-          
+
         </div>
-        <p className="App-intro">
+        <p className="App-intro" onClick={this.displayMon.bind(this)}>
           {alphabetized.map((p) => (
             <Pokemon key={p.entry_number} name={p.pokemon_species.name} />
           ))}
