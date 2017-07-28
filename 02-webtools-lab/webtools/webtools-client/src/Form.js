@@ -11,7 +11,11 @@ class Form extends Component {
       logoUrl: this.refs.logoUrl.value,
       documentationUrl: this.refs.documentationUrl.value,
     }
+    if (this.props.id) {
+      this.props.parent.editingTool(this.props.id)
+    }else{
     this.props.parent.onFormSubmit(formData)
+    }
     for(var ref in this.refs) {
       this.refs[ref].value = ''
     }
