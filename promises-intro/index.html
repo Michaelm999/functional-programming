@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Promises</title>
+  </head>
+  <body>
+    <script>
+      function getUsers() {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            const users= ['Philippe', 'jimmy', 'meredith']
+            if (users.length) {
+              resolve(users)
+            } else {
+              reject('no users found')
+            }
+          }, 2000)
+        })
+      }
+
+      getUsers()
+        .then((users) => {console.log(users)})
+        .catch((error) => {console.log(error)})
+
+
+    </script>
+  </body>
+</html>
