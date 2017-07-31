@@ -7,7 +7,8 @@ const
   bodyParser = require('body-parser'),
   mongoURL = process.env.MONGO_URL || 'mongodb://localhost/jwt',
   port = process.env.PORT || 3001,
-  User = require('./models/User.js')
+  User = require('./models/User.js'),
+  jwt = require('jsonwebtoken')
 
   mongoose.connect(mongoURL, (err) => {
     console.log(err || "connected to MongoDB");
@@ -46,13 +47,39 @@ const
         })
       })
     })
+
     app.post('/api/authenticate', (req, res) => {
-      User.findOne({email: req.body.email}, '+password',() => {
+      User.findOne({email: req.body.email}, '+password',(err, user) => {
         if(!user || (user && !user.validPassword(req.body.password))) {
           return res.json({success: false, message: "Incorrect email or password."})
         }
+        const userData = user.toObject()
+        delete userData.password
+        const token = jwt.sign(userData, process.env.SECRET)
+        res.json({success: true, message: "Logged in successfully", token})
       })
     })
+
+    app.use(verifyToken)
+    app.get('/protected', (req, res) => {
+      console.log("Current user:")
+      console.log(req.user);
+      res.json({message: "You are in the VIP."})
+    })
+
+    function verifyToken(req, res, next) {
+      const token = req.headers['token']
+      if(token){
+        jwt.verify(token, process.env.SECRET, (err, decoded) => {
+          if(err) return res.json({success: false, message: "token could not be verified."})
+          req.user = decoded
+          next()
+        })
+      } else {
+        res.json({success:false, message: "No token provided. Access denied."})
+      }
+    }
+
   app.listen(port, (err) => {
     console.log(err || `Server running on ${port}.`);
   })
