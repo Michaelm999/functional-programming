@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
 import Form from './Form'
@@ -96,7 +95,6 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h2>{this.state.loading ? 'Loading...' : 'WebTools'} ({this.state.tools.length})</h2>
           <Form parent={this} />
         </div>
@@ -119,7 +117,7 @@ class App extends Component {
               {tool.name}
               <img src={tool.logoUrl} />
               <button onClick={this.editTool.bind(this, tool._id)}>Edit</button>
-              <button onClick={this.deleteTool.bind(this, tool._id)}>X</button>
+              <button onClick={this.deleteTool.bind(this, tool._id)}>Delete</button>
             </li>
           )
         ))}

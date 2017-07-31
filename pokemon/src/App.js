@@ -5,7 +5,8 @@ import axios from 'axios'
 
 class App extends Component {
   state = {
-    pokemon: []
+    pokemon: [],
+    displaymon:[]
   }
 
   catchPokemon(){
@@ -21,8 +22,8 @@ class App extends Component {
   }
 
   displayMon(){
-    console.log("pokedex")
-    
+    console.log(this.state.pokemon)
+
   }
 
   componentDidMount(){
@@ -51,7 +52,7 @@ class App extends Component {
       <div className="App">
         <h1>{this.state.loading ? 'Loading...' : ''}</h1>
         <div className="App-header">
-
+          <p>{this.state.displaymon}</p>
         </div>
         <p className="App-intro" onClick={this.displayMon.bind(this)}>
           {alphabetized.map((p) => (
