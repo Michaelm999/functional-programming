@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <title>Hello</title>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <!-- <button id="screamer">Scream</button> -->
+    <script type="text/javascript">
+      var socket = io()
+      function setup() {
+        createCanvas(400, 400)
+        background('pink')
+      }
+      function draw() {
+      }
+      socket.on('server-says', (data) => {
+        text(data, random(0, width), random(0, height))
+      })
+    </script>
+  </body>
+</html>

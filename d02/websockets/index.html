@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <meta charset="utf-8">
+    <title>Hello</title>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <button id="screamer">Scream</button>
+    <script type="text/javascript">
+      var socket = io()
+      var screamButton = document.querySelector('#screamer')
+      socket.on('server-says', (data)=>{
+        console.log(data);
+      })
+      screamButton.addEventListener('click', (evt)=>{
+        socket.emit('server-scream', 'oblivion!')
+      })
+    </script>
+  </body>
+</html>

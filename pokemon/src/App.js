@@ -21,14 +21,12 @@ class App extends Component {
       })
   }
 
-  displayMon(){
-    console.log(this.state.pokemon)
-
+  displayMon(i){
+    console.log(i);
+    // const name= this.state.pokemon
+    console.log(this.state.pokemon[i].pokemon_species);
   }
 
-  componentDidMount(){
-    this.catchPokemon()
-  }
 
   render() {
 
@@ -51,12 +49,13 @@ class App extends Component {
     return (
       <div className="App">
         <h1>{this.state.loading ? 'Loading...' : ''}</h1>
+        <button onClick={this.catchPokemon.bind(this)}>Catch em all</button>
         <div className="App-header">
           <p>{this.state.displaymon}</p>
         </div>
-        <p className="App-intro" onClick={this.displayMon.bind(this)}>
-          {alphabetized.map((p) => (
-            <Pokemon key={p.entry_number} name={p.pokemon_species.name} />
+        <p className="App-intro">
+          {alphabetized.map((p, index) => (
+            <Pokemon key={p.entry_number} name={p.pokemon_species.name} parent={this} index={index}/>
           ))}
         </p>
       </div>
