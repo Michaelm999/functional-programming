@@ -24,7 +24,10 @@ class App extends Component {
   displayMon(i){
     console.log(i);
     // const name= this.state.pokemon
-    console.log(this.state.pokemon[i].pokemon_species);
+    console.log(this.state.pokemon[i].pokemon_species.name)
+    this.setState({
+      displaymon: [this.state.pokemon[i].pokemon_species.name]
+    })
   }
 
 
