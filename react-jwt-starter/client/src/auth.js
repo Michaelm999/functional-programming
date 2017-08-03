@@ -20,7 +20,7 @@ class AuthClient {
   }
 
   logIn(credentials) {
-    return this.request({method: 'POST', url: '/authentcate', data: credentials})
+    return this.request({method: 'POST', url: '/authenticate', data: credentials})
     .then(response => {
       if(response.data.success) {
         const token = response.data.token
@@ -30,6 +30,11 @@ class AuthClient {
         return false
       }
     })
+  }
+
+  getCurrentUser(){
+    const token = this.getToken()
+    return token ? jwtDecode(token) : null
   }
 
   getToken(){

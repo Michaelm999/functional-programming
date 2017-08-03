@@ -1,7 +1,12 @@
 import React from 'react'
 import auth from '../auth'
+import {Redirect} from 'react-router-dom'
 
 class SignUp extends React.Component {
+
+  state = {
+    shouldRedirect: false
+  }
 
   handleFormSubmit(evt){
     evt.preventDefault()
@@ -12,11 +17,18 @@ class SignUp extends React.Component {
     }
     console.log("creating account");
     console.log(formData);
-    auth.signup(formData).then(success=>console.log(success))
+    auth.signup(formData).then(success => {
+      if (success) {
+        this.setState({shouldRedirect: true})
+      }
+    })
   }
 
   render(){
     return(
+      this.state.shouldRedirect
+      ? <Redirect to='/login' />
+      :(
       <div className="SignUp">
       <h1>Create An Account</h1>
       <form onSubmit={this.handleFormSubmit.bind(this)}>
@@ -26,6 +38,7 @@ class SignUp extends React.Component {
         <button>Create Account</button>
       </form>
       </div>
+      )
     )
   }
 }

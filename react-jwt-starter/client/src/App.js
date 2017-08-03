@@ -5,18 +5,51 @@ import { BrowserRouter as Router, Route, Link, NavLink, Redirect } from 'react-r
 
 import NavBar from './components/NavBar'
 import Home from './components/Home'
+import VIP from './components/VIP'
 import SignUp from './components/SignUp'
 import LogIn from './components/LogIn'
+import LogOut from './components/LogOut'
+import auth from './auth'
+
+
 
 class App extends Component {
+
+  state = {
+    currentUser: auth.getCurrentUser()
+  }
+  setCurrentUser() {
+    this.setState({
+      currentUser: auth.getCurrentUser()
+    })
+  }
+  logOut() {
+    auth.clearToken()
+    this.setState({currentUser: null})
+  }
+
   render() {
+    const currentUser = this.state.currentUser
     return (
     <Router>
       <div className="App">
-        <NavBar />
+        {currentUser ?
+        <p>Current User: {currentUser.name}</p>
+        : null}
+        <NavBar currentUser={this.state.currentUser} />
         <Route exact path='/' component={Home} />
+        <Route path='/vip' render={() => (
+            currentUser
+            ? <VIP />
+          : <Redirect to='/login' />
+      )} />
         <Route path='/signup' component={SignUp} />
-        <Route path='/login' component={LogIn} />
+        <Route path='/login' render={() => (
+            <LogIn onLogIn={this.setCurrentUser.bind(this)} />
+          )} />
+        <Route path='/logout' render={() => (
+            <LogOut onLogout={this.logOut.bind(this)} />
+          )}/>
       </div>
     </Router>
     );

@@ -1,7 +1,13 @@
 import React from 'react'
 import auth from '../auth'
+import {Redirect} from 'react-router-dom'
+
 
 class LogIn extends React.Component {
+
+state = {
+  shouldRedirect: false
+}
 
   handleFormSubmit(evt){
     evt.preventDefault()
@@ -11,11 +17,19 @@ class LogIn extends React.Component {
     }
     console.log("Logging In");
     console.log(formData)
-    auth.logIn(formData).then(user=>console.log(user))
+    auth.logIn(formData).then(user=> {
+      if (user) {
+        this.props.onLogIn()
+        this.setState({shouldRedirect: true})
+      }
+    })
   }
 
   render(){
     return(
+      this.state.shouldRedirect ?
+      <Redirect to='/' />
+      : (
       <div className="LogIn">
       <h1>Log In</h1>
       <form onSubmit={this.handleFormSubmit.bind(this)}>
@@ -24,6 +38,8 @@ class LogIn extends React.Component {
         <button>Log In</button>
       </form>
       </div>
+      )
+
     )
   }
 }
