@@ -14,7 +14,7 @@ userSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
 }
 
-// compares a provided password
+// compares a provided password (from a form, for example)
 // to the encrypted password stored in the database.
 // returns a boolean true/false for: did they enter the right password?
 userSchema.methods.validPassword = function(password) {

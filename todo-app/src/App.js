@@ -4,14 +4,16 @@ import './App.css';
 class App extends Component {
   constructor(props){
     super(props)
-    this.state = {items: [], currentId: 0}//simulating id that server would give
+    this.state = {items: [], item: [], currentId: 0}//simulating id that server would give
   }
+
   addItem(){
     var currentId = this.state.currentId
     var currentItems = this.state.items.slice()//copies the array
     currentItems.push({id: currentId})
     this.setState({items: currentItems, currentId: currentId+1})
   }
+
   deleteItem(id) {
       this.setState({
         items: this.state.items.filter((item)=>{
@@ -24,6 +26,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+          <p>{this.state.item}</p>
           <button onClick={this.addItem.bind(this)}>Create New ToDo</button>
         </div>
         <div className="App-body">
@@ -63,9 +66,18 @@ class TodoItem extends Component {
   deleteItem(){
     this.props.dad.deleteItem(this.props.itemId)
   }
-  showItem(){
+  showOne(id){
+    console.log(id)
+    this.setState({
+      item: this.props.itemId
+      })
+    }
+
+  showItem() {
   return (<li onClick={this.editItem.bind(this)}>
-    {this.state.content}</li>)
+    {this.state.content}
+  <button onClick ={this.showOne.bind(this)}>Show</button>
+    </li>)
   }
   render(){
     if (this.state.editing)
